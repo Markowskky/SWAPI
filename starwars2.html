@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Wars Character Guessing Game</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #000;
+color: #fff;
+text-align: center;
+padding: 20px;
+background-image: url("star-wars.gif");
+background-repeat:no-repeat;
+background-size:cover;
+background-attachment:fixed;
+}
+
+h1 {
+color: #ffcc00;
+}
+
+.question-box {
+margin: 20px auto;
+padding: 20px;
+background-color: #222;
+border-radius: 10px;
+max-width: 400px;
+}
+
+button {
+padding: 10px 20px;
+margin: 10px;
+background-color: #ffcc00;
+border: none;
+color: #000;
+cursor: pointer;
+border-radius: 5px;
+font-size: 16px;
+}
+
+button:hover {
+background-color: #fff200;
+}
+</style>
+</head>
+<body>
+<h1>Star Wars Character Guessing Game</h1>
+<div class="question-box">
+<p id="question">Loading question...</p>
+<button onclick="answer('yes')">Yes</button>
+<button onclick="answer('no')">No</button>
+</div>
+
+<script>
+const swapiBaseUrl = 'https://swapi.dev/api/';
+let characters = [];
+let currentQuestionIndex = 0;
+let filteredCharacters = [];
+
+const questions = [
+{ text: 'Is the character human?', key: 'species', value: '1' }, // human = species id 1
+{ text: 'Is the character male?', key: 'gender', value: 'male' },
+{ text: 'Is the character from Tatooine?', key: 'homeworld', value: '1' }, // Tatooine = planet id 1
+];
+
+// Funkcja pobierająca postacie ze SWAPI
+async function fetchCharacters() {
+let url = `${swapiBaseUrl}people/`;
+while (url) {
+const response = await fetch(url);
+const data = await response.json();
+characters = characters.concat(data.results);
+url = data.next; // Następna strona
+}
+await fetchAdditionalData(); // Pobranie gatunków i planet
+filteredCharacters = characters;
+askQuestion();
+}
+
+// Pobieranie dodatkowych danych (gatunki i planety) do postaci
+async function fetchAdditionalData() {
+for (let character of characters) {
+if (character.species.length > 0) {
+const speciesResponse = await fetch(character.species[0]);
+const speciesData = await speciesResponse.json();
+character.species_id = speciesData.url.split('/')[5]; // Extract species ID
+} else {
+character.species_id = '1'; // Domyślnie człowiek, jeśli brak species
+}
+
+const homeworldResponse = await fetch(character.homeworld);
+const homeworldData = await homeworldResponse.json();
+character.homeworld_id = homeworldData.url.split('/')[5]; // Extract planet ID
+}
+}
+
+// Zadawanie pytania
+function askQuestion() {
+if (currentQuestionIndex < questions.length && filteredCharacters.length > 1) {
+const question = questions[currentQuestionIndex];
+document.getElementById('question').innerText = question.text;
+} else {
+showFinalGuess();
+}
+}
+
+// Obsługa odpowiedzi użytkownika
+function answer(response) {
+const question = questions[currentQuestionIndex];
+if (response === 'yes') {
+filteredCharacters = filteredCharacters.filter(character => matchCharacter(character, question));
+} else {
+filteredCharacters = filteredCharacters.filter(character => !matchCharacter(character, question));
+}
+currentQuestionIndex++;
+askQuestion();
+}
+
+// Dopasowanie postaci do pytania
+function matchCharacter(character, question) {
+if (question.key === 'species') {
+return character.species_id === question.value;
+} else if (question.key === 'homeworld') {
+return character.homeworld_id === question.value;
+} else {
+return character[question.key] === question.value;
+}
+}
+
+// Wyświetlenie ostatecznego wyniku
+function showFinalGuess() {
+if (filteredCharacters.length === 1) {
+document.getElementById('question').innerText = `Your character is ${filteredCharacters[0].name}!`;
+} else if (filteredCharacters.length === 0) {
+document.getElementById('question').innerText = 'No characters match your answers!';
+} else {
+document.getElementById('question').innerText = 'Too many characters match your answers, try again!';
+}
+}
+
+// Rozpoczęcie gry
+fetchCharacters();
+</script>
+</body>
+</html>
