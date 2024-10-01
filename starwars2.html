@@ -65,7 +65,7 @@
     </style>
 </head>
 <body>
-    <h1>Ask Obiwan</h1>
+    <h1>Spytaj Obiwana</h1>
     <div class="question-box">
         <p id="question">Loading question...</p> <!-- Pole, w którym wyświetlane są pytania -->
         <button onclick="answer('yes')">Yes</button>
@@ -84,18 +84,18 @@
 
         // Lista pytań
         const questions = [
-            { text: 'Is the character human?', key: 'species', value: '1' }, // human = species id 1
-            { text: 'Is the character male?', key: 'gender', value: 'male' },
-            { text: 'Is the character from Tatooine?', key: 'homeworld', value: '1' }, // Tatooine = planet id 1
-            { text: 'Is the character a droid?', key: 'species', value: '2' }, // droid = species id 2
-            { text: 'Is the character over 2 meters tall?', key: 'height', value: 200, comparison: 'greater' },
-            { text: 'Does the character have blue eyes?', key: 'eye_color', value: 'blue' },
-            { text: 'Does the character have blonde hair?', key: 'hair_color', value: 'blond' },
-            { text: 'Is the character from Alderaan?', key: 'homeworld', value: '2' }, // Alderaan = planet id 2
-            { text: 'Does the character have light skin?', key: 'skin_color', value: 'fair' },
-            { text: 'Is the character a Jedi?', key: 'species', value: '1' }, // Przykład pytania o Jedi
-            { text: 'Does the character wear a mask?', key: 'has_mask', value: true }, // Fikcyjne pole (dla postaci w maskach)
-            { text: 'Is the character part of the Rebel Alliance?', key: 'affiliation', value: 'Rebel Alliance' }, // Kolejne fikcyjne pole
+            { text: 'Czy twoja postać jest człowiekiem?', key: 'species', value: '1' }, // human = species id 1
+            { text: 'Czy twoja postać jest mężczyzną?', key: 'gender', value: 'male' },
+            { text: 'Czy twoja postać pochodzi z Tatooine?', key: 'homeworld', value: '1' }, // Tatooine = planet id 1
+            { text: 'Czy twoja postać jest druidem?', key: 'species', value: '2' }, // droid = species id 2
+            { text: 'Czy twoja postać ma powyżej dwóch metrów wysokości?', key: 'height', value: 200, comparison: 'greater' },
+            { text: 'Czy twoja postać ma niebieskie oczy?', key: 'eye_color', value: 'blue' },
+            { text: 'Czy twoja postać ma blond włosy?', key: 'hair_color', value: 'blond' },
+            { text: 'Czy twoja postać pochodzi z Alderaan?', key: 'homeworld', value: '2' }, // Alderaan = planet id 2
+            { text: 'Czy twoja postać ma białą skórę?', key: 'skin_color', value: 'fair' },
+            { text: 'Czy twoja postać jest Jedi?', key: 'species', value: '1' }, // Przykład pytania o Jedi
+            { text: 'Czy twoja postać nosi maskę?', key: 'has_mask', value: true }, // Fikcyjne pole (dla postaci w maskach)
+            { text: 'Czy twoja postać jest częścią Rebeli Alliance?', key: 'affiliation', value: 'Rebel Alliance' }, // Kolejne fikcyjne pole
         ];
 
         // Funkcja pobierająca postacie z API SWAPI
