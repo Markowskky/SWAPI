@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars Akinator</title>
-    <link rel="stylesheet" href="starwars.css">
+    <link rel="stylesheet" type="text/css" href="starwars.css">
 </head>
 <body>
     <h1>Spytaj Obiwana</h1>
@@ -14,6 +14,7 @@
         <button onclick="answer('no')">Nie</button>
     </div>
     <button id="restart-btn" onclick="restartGame()">Restart gry</button> <!-- Przycisk do restartu gry -->
+    <img src="./obiwankenbobik.png" alt="obi-wan" id="obi-wan" style="position:absolute;left:60%; top:20%;">
 
     <script>
         const swapiBaseUrl = 'https://swapi.dev/api/';
