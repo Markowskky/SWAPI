@@ -1,0 +1,83 @@
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        
+            padding: 20px;
+            background-image: url("./star-wars.gif");
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-attachment:fixed;
+            z-index: 3;
+        }
+        .question-box{
+
+            text-align: center;
+
+
+        }
+        .obi-wan{
+            size: 3000px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            }
+
+        h1 {
+            color: #ffcc00;
+            text-align: center;
+        }
+
+        .question-box {
+            margin: 20px auto;
+            padding: 20px;
+
+            background-image: url("./tab.png");
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-attachment:fixed;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #ffcc00;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+
+        button:hover {
+            background-color: #fff200;
+        }
+
+        #restart-btn {
+            display: none; 
+            margin-top: 20px;
+            display:flex;
+            background-color: #ffcc00;
+            position: absolute;
+            left: 46%;
+            top: 28%;
+
+        }
+        @font-face {
+        font-family: "WO2W";
+        src: url("./soloist1.ttf");
+
+   }
+   #title{
+            font-family:"WO2W";
+            color:rgb(255, 187, 0);
+            margin:0 auto;
+            display: flex; 
+            justify-content: center;
+            text-align:center;
+        }
+    
